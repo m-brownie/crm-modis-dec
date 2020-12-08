@@ -5,10 +5,13 @@ import { IconsModule } from '../icons/icons.module';
 import { LoginModule } from '../login/login.module';
 import { TextsModule } from '../texts/texts.module';
 import { UiModule } from '../ui/ui.module';
+import { HeaderComponent } from './components/header/header.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent, NavComponent, FooterComponent],
   imports: [
     CommonModule
   ],
@@ -17,7 +20,10 @@ import { UiModule } from '../ui/ui.module';
     UiModule,
     TextsModule,
     IconsModule,
-    NgbModule
+    NgbModule,
+    HeaderComponent,
+    NavComponent,
+    FooterComponent
   ]
 })
 export class CoreModule { }

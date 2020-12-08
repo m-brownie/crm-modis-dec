@@ -1,6 +1,20 @@
 <div class="d-flex flex-column">
-  <div>Header</div>
-  <div>Nav</div>
-  <div class="flex-grow-1">Content</div>
-  <div>Footer</div>
+  <div>
+    <!-- Projection d'instance header component -->
+    <!-- Ne pas utiliser "app-header" car ce nom est propre à cette appli
+    et ne correspond pas forcement à une autre application-->
+    <ng-content select=".header"></ng-content>
+  </div>
+  <div>
+    <!-- Projection d'instance nav component -->
+    <ng-content select=".nav"></ng-content>
+  </div>
+  <div class="flex-grow-1">
+    <!-- Projection d'instance page component -->
+    content
+  </div>
+  <div>
+    <!-- Projection d'instance footer component -->
+    <ng-content select=".footer"></ng-content>
+  </div>
 </div>
