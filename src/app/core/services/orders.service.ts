@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { StateOrder } from '../enums/state-order.enum';
 import { Order } from '../models/order';
 
 @Injectable({
@@ -30,8 +31,24 @@ export class OrdersService {
   }
 
   // Change item state
+  public changeState(item: Order, state: StateOrder): Observable<Order> {
+
+    // On fait une copie de item pour la modifier en BDD
+    // et SEULEMENT APRES on modifie item dans le front
+    // Il faut un nouvel objet avec nouvelle référence.
+    // const obj = item; => même référence,
+    // donc on utilise {...item} pour créer une nouvelle référence,
+    // mais avec toutes les propriétés et valeurs de item
+    const obj = {...item};
+    obj.state = state;
+
+    return this.update(obj);
+  }
 
   // Update item in collection
+  public update(item: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.urlApi}/orders/${item.id}`, item);
+  }
 
   // Add item in collection
 

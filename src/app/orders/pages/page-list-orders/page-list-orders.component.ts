@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order.enum';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from 'src/app/core/services/orders.service';
 
@@ -13,6 +14,8 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   // public collection!: Order[];
 
   public collection$!: Observable<Order[]>;
+
+  public states = Object.values(StateOrder);
 
   public headers!: string[];
 
@@ -47,6 +50,17 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Pour l'exemple, pas nécessaire, car c'est issu de Http
     // this.sub.unsubscribe();
+  }
+
+  public changeState(item: Order, event: any): void {
+
+    const state = event.target.value;
+    this.os.changeState(item, state).subscribe((res) => {
+      // On met à jour la valeur dans le front
+      // SEULEMENT APRES l'avoir mis à jour en BDD
+      // cf order.service.ts dans la méthode changeState()
+      item.state = res.state;
+    });
   }
 
 }
