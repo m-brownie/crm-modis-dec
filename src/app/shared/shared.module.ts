@@ -6,17 +6,19 @@ import { TemplateFullWidthComponent } from '../templates/template-full-width/tem
 import { TemplatesModule } from '../templates/templates.module';
 import { IconsModule } from '../icons/icons.module';
 import { TextsModule } from '../texts/texts.module';
+import { TotalPipe } from './pipes/total.pipe';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, BtnComponent],
+  declarations: [TableLightComponent, BtnComponent, TotalPipe],
   imports: [
     CommonModule
   ],
   exports: [
     TemplatesModule,
     TableLightComponent,
-    BtnComponent]
+    BtnComponent,
+    TotalPipe]
 })
 export class SharedModule { }
