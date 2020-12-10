@@ -41,6 +41,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Pour l'exemple, pas nécessaire, car c'est issu de Http
     this.sub.unsubscribe();
   }
 

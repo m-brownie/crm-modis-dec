@@ -8,9 +8,9 @@
         <td>{{ item.typePresta }}</td>
         <td>{{ item.client }}</td>
         <td>{{ item.nbJours }}</td>
-        <td>{{ item.tjmHt }}</td>
-        <td>total ht</td>
-        <td>total ttc</td>
+        <td>{{ item.tjmHt | currency }}</td>
+        <td>{{ item | json }}</td>
+        <td>{{ item | json }}</td>
         <td>{{ item.state }}</td>
       </tr>
     </app-table-light>
