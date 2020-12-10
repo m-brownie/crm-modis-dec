@@ -9,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'orders',
+    // loadChildren : permet le lazy loading
     loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)
   },
   {

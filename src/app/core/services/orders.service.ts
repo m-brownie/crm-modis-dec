@@ -10,7 +10,7 @@ import { Order } from '../models/order';
 export class OrdersService {
 
   // Property collection
-  private pCollection!: Observable<Order[]>;
+  private pCollection$!: Observable<Order[]>;
 
   private urlApi = environment.urlApi;
 
@@ -21,12 +21,12 @@ export class OrdersService {
 
   // Get collection
   get collection(): Observable<Order[]> {
-    return this.pCollection;
+    return this.pCollection$;
   }
 
   // Set collection
   set collection(col: Observable<Order[]>) {
-    this.pCollection = col;
+    this.pCollection$ = col;
   }
 
   // Change item state
