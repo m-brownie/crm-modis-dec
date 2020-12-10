@@ -2,7 +2,7 @@
   <h1 class="title">Orders</h1>
   <ng-container class="contents">
     <app-table-light
-      *ngIf="collection"
+      *ngIf="collection$ | async as collection"
       [headers]="headers">
       <tr *ngFor="let item of collection">
         <td>{{ item.typePresta }}</td>

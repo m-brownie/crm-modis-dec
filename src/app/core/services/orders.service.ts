@@ -10,7 +10,7 @@ import { Order } from '../models/order';
 export class OrdersService {
 
   // Property collection
-  private pCollection$!: Observable<Order[]>;
+  public pCollection$!: Observable<Order[]>;
 
   private urlApi = environment.urlApi;
 
