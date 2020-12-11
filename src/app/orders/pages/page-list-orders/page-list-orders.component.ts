@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order.enum';
 import { Order } from 'src/app/core/models/order';
@@ -24,7 +24,8 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   // est fourni par Http
   // private sub!: Subscription;
 
-  constructor(private os: OrdersService) {
+  constructor(private os: OrdersService,
+              private cd: ChangeDetectorRef) {
     // Appel http effectué à ce moment là (au moment du subscribe)
     /*this.sub = this.os.collection.subscribe((data) => {
       this.collection = data;
@@ -60,6 +61,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
       // SEULEMENT APRES l'avoir mis à jour en BDD
       // cf order.service.ts dans la méthode changeState()
       item.state = res.state;
+      this.cd.detectChanges();
     });
   }
 
