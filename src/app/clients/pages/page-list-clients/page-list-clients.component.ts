@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StateClient } from 'src/app/core/enums/state-client.enum';
+import { Client } from 'src/app/core/models/client';
+import { ClientsService } from 'src/app/core/services/clients.service';
 
 @Component({
   selector: 'app-page-list-clients',
@@ -7,9 +11,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageListClientsComponent implements OnInit {
 
-  constructor() { }
+  // public collection!: Client[];
+
+  public collection$!: Observable<Client[]>;
+
+  public states = Object.values(StateClient);
+
+  public headers!: string[];
+
+  // Exemple pour désouscrire de l'observable.
+  // Pas nécessaire en réalité car l'observable
+  // est fourni par Http
+  // private sub!: Subscription;
+
+  constructor(private cs: ClientsService,
+              private cd: ChangeDetectorRef) {
+    // Appel http effectué à ce moment là (au moment du subscribe)
+    /*this.sub = this.cs.collection.subscribe((data) => {
+      this.collection = data;
+      console.log(data);
+    });*/
+
+    this.collection$ = this.cs.pCollection$;
+
+    // Initialisation des headers du tableau des Page List Clients
+    this.headers = ['Name',
+      'Total CA HT',
+      'TVA',
+      'Total TTC',
+      'State'
+    ];
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    // Pour l'exemple, pas nécessaire, car c'est issu de Http
+    // this.sub.unsubscribe();
+  }
+
+  public changeState(item: Client, event: any): void {
+
+    const state = event.target.value;
+    this.cs.changeState(item, state).subscribe((res) => {
+      // On met à jour la valeur dans le front
+      // SEULEMENT APRES l'avoir mis à jour en BDD
+      // cf order.service.ts dans la méthode changeState()
+      item.state = res.state;
+      this.cd.detectChanges();
+    });
   }
 
 }

@@ -1,0 +1,15 @@
+.table {
+  .state-canceled,
+  .state-inactive {
+    background: var(--app-error);
+  }
+
+  .state-option {
+    background: var(--app-warning);
+  }
+
+  .state-confirmed,
+  .state-active {
+    background: var(--app-success);
+  }
+}
