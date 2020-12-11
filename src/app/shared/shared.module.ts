@@ -7,11 +7,12 @@ import { TemplatesModule } from '../templates/templates.module';
 import { IconsModule } from '../icons/icons.module';
 import { TextsModule } from '../texts/texts.module';
 import { TotalPipe } from './pipes/total.pipe';
+import { StateDirective } from './directives/state.directive';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, BtnComponent, TotalPipe],
+  declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective],
   imports: [
     CommonModule
   ],
@@ -19,6 +20,7 @@ import { TotalPipe } from './pipes/total.pipe';
     TemplatesModule,
     TableLightComponent,
     BtnComponent,
-    TotalPipe]
+    TotalPipe,
+    StateDirective]
 })
 export class SharedModule { }
