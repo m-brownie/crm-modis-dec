@@ -56,6 +56,9 @@ export class ClientsService {
     }
 
     // Delete item
+    public delete(item: Client): Observable<Client> {
+      return this.http.delete<Client>(`${this.urlApi}/clients/${item.id}`);
+    }
 
     // Get item by id from collection
 }

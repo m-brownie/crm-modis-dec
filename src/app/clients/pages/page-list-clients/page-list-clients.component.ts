@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { StateClient } from 'src/app/core/enums/state-client.enum';
 import { Client } from 'src/app/core/models/client';
 import { ClientsService } from 'src/app/core/services/clients.service';
@@ -11,18 +11,17 @@ import { ClientsService } from 'src/app/core/services/clients.service';
 })
 export class PageListClientsComponent implements OnInit {
 
-  // public collection!: Client[];
-
-  public collection$!: Observable<Client[]>;
+  public collection$: Subject<Client[]> = new Subject();
 
   public states = Object.values(StateClient);
 
   public headers!: string[];
 
-  // Exemple pour désouscrire de l'observable.
-  // Pas nécessaire en réalité car l'observable
-  // est fourni par Http
-  // private sub!: Subscription;
+  private obs = new Observable((subscribers) => {
+    subscribers.next('Observable');
+  });
+
+  private sub: Subscription;
 
   constructor(private cs: ClientsService,
               private cd: ChangeDetectorRef) {
@@ -32,10 +31,14 @@ export class PageListClientsComponent implements OnInit {
       console.log(data);
     });*/
 
-    this.collection$ = this.cs.pCollection$;
+    this.sub = this.obs.subscribe((data) => {
+      console.log("1- Subscribe to the Observable : " + data);
+    });
 
     // Initialisation des headers du tableau des Page List Clients
-    this.headers = ['Name',
+    this.headers = [
+      'Actions',
+      'Name',
       'Total CA HT',
       'TVA',
       'Total TTC',
@@ -44,11 +47,18 @@ export class PageListClientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.cs.collection.subscribe((datas) => {
+      console.log("2- Subscribe à la collection du service - datas : " + datas);
+      this.collection$.next(datas);
+    });
+
+    //this.collection$ = this.cs.pCollection$;
   }
 
   ngOnDestroy(): void {
     // Pour l'exemple, pas nécessaire, car c'est issu de Http
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   public changeState(item: Client, event: any): void {
@@ -60,6 +70,20 @@ export class PageListClientsComponent implements OnInit {
       // cf order.service.ts dans la méthode changeState()
       item.state = res.state;
       this.cd.detectChanges();
+    });
+  }
+
+  public delete(item: Client): void {
+
+    this.cs.delete(item).subscribe((res) => {
+
+      console.log("Delete - Subscribe au delete du service " + res);
+
+      this.cs.collection.subscribe((datas) => {
+
+        console.log("Delete - Subscribe à la collection du service - datas : " + datas);
+        this.collection$.next(datas);
+      });
     });
   }
 
