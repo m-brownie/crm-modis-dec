@@ -10,55 +10,58 @@ import { Client } from '../models/client';
 })
 export class ClientsService {
 
-    // Property collection
-    public pCollection$!: Observable<Client[]>;
+  // Property collection
+  public pCollection$!: Observable<Client[]>;
 
-    private urlApi = environment.urlApi;
+  private urlApi = environment.urlApi;
 
-    constructor(private http: HttpClient) {
-      // Appel implicite de la méthode "set collection" un peu plus bas
-      this.collection = http.get<Client[]>(`${this.urlApi}/clients`);
-    }
+  constructor(private http: HttpClient) {
+    // Appel implicite de la méthode "set collection" un peu plus bas
+    this.collection = http.get<Client[]>(`${this.urlApi}/clients`);
+  }
 
-    // Get collection
-    get collection(): Observable<Client[]> {
-      return this.pCollection$;
-    }
+  // Get collection
+  get collection(): Observable<Client[]> {
+    return this.pCollection$;
+  }
 
-    // Set collection
-    set collection(col: Observable<Client[]>) {
-      this.pCollection$ = col;
-    }
+  // Set collection
+  set collection(col: Observable<Client[]>) {
+    this.pCollection$ = col;
+  }
 
-    // Change item state
-    public changeState(item: Client, state: StateClient): Observable<Client> {
+  // Change item state
+  public changeState(item: Client, state: StateClient): Observable<Client> {
 
-      // On fait une copie de item pour la modifier en BDD
-      // et SEULEMENT APRES on modifie item dans le front
-      // Il faut un nouvel objet avec nouvelle référence.
-      // const obj = item; => même référence,
-      // donc on utilise {...item} pour créer une nouvelle référence,
-      // mais avec toutes les propriétés et valeurs de item
-      const obj = {...item};
-      obj.state = state;
+    // On fait une copie de item pour la modifier en BDD
+    // et SEULEMENT APRES on modifie item dans le front
+    // Il faut un nouvel objet avec nouvelle référence.
+    // const obj = item; => même référence,
+    // donc on utilise {...item} pour créer une nouvelle référence,
+    // mais avec toutes les propriétés et valeurs de item
+    const obj = {...item};
+    obj.state = state;
 
-      return this.update(obj);
-    }
+    return this.update(obj);
+  }
 
-    // Update item in collection
-    public update(item: Client): Observable<Client> {
-      return this.http.put<Client>(`${this.urlApi}/clients/${item.id}`, item);
-    }
+  // Update item in collection
+  public update(item: Client): Observable<Client> {
+    return this.http.put<Client>(`${this.urlApi}/clients/${item.id}`, item);
+  }
 
-    // Add item in collection
-    public add(item: Client): Observable<Client> {
-      return this.http.post<Client>(`${this.urlApi}/clients`, item);
-    }
+  // Add item in collection
+  public add(item: Client): Observable<Client> {
+    return this.http.post<Client>(`${this.urlApi}/clients`, item);
+  }
 
-    // Delete item
-    public delete(item: Client): Observable<Client> {
-      return this.http.delete<Client>(`${this.urlApi}/clients/${item.id}`);
-    }
+  // Delete item
+  public delete(item: Client): Observable<Client> {
+    return this.http.delete<Client>(`${this.urlApi}/clients/${item.id}`);
+  }
 
-    // Get item by id from collection
+  // Get item by id from collection
+  public getItemById(id: string): Observable<Client> {
+    return this.http.get<Client>(`${this.urlApi}/clients/${id}`);
+  }
 }

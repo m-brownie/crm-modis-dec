@@ -18,7 +18,7 @@ export class FormOrderComponent implements OnInit {
   init!: Order;
 
   @Output()
-  clicked: EventEmitter<Order> = new EventEmitter<Order>();
+  submited: EventEmitter<Order> = new EventEmitter<Order>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -45,7 +45,7 @@ export class FormOrderComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.clicked.emit(this.form.value);
+    this.submited.emit(this.form.value);
   }
 
 }

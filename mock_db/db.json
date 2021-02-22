@@ -54,11 +54,21 @@
       "tjmHt": 1200,
       "nbJours": 2,
       "tva": 20,
-      "state": "OPTION",
+      "state": "CONFIRMED",
       "typePresta": "formation",
       "client": "Capge",
       "comment": "comment test",
       "id": 6
+    },
+    {
+      "tjmHt": 1200,
+      "nbJours": 20,
+      "tva": 20,
+      "state": "OPTION",
+      "typePresta": "Test test",
+      "client": "Client testeur",
+      "comment": "comment 2",
+      "id": 7
     }
   ],
   "clients": [
@@ -101,14 +111,6 @@
       "name": "dqsdQSDqsdQSDqds",
       "totalCaHt": 0,
       "comment": null
-    },
-    {
-      "state": "ACTIVE",
-      "tva": 20,
-      "id": 6,
-      "name": "qdsqsdQSDqsd",
-      "totalCaHt": 0,
-      "comment": "QSDqsdQSDqsdQS"
     }
   ]
 }
