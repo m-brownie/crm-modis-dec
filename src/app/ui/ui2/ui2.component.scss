@@ -2,16 +2,19 @@
 /// Description design of user interface
 header {
   height: 65px;
-  background: var(--app-light);
+  background: var(--app-header);
   padding: 0 $gutter;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
 main {
   background: var(--app-darklight);
   min-height: calc(100vh - 65px);
   padding-top: 65px;
 }
+
 aside {
   background: var(--app-darklight2);
   width: 250px;
@@ -24,30 +27,41 @@ aside {
     padding-bottom: 65px;
   }
 }
+
+.nav-icon-container {
+  width: 0;
+}
+
 .close-aside aside {
   width: 0;
   overflow: hidden;
 }
+
 .close-aside .shadow {
   display: none;
 }
+
 .shadow {
   background: rgba(var(--app-dark), 0.8);
   width: 100%;
   min-height: 100vh;
   z-index: 1000;
 }
+
 .page {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 65px);
 }
+
 .contents {
   flex-grow: 1;
 }
+
 footer {
   background: var(--app-light);
 }
+
 @media (min-width: $md-breakpoint) {
   .shadow {
     display: none;
