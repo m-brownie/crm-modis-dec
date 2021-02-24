@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { StateClient } from 'src/app/core/enums/state-client.enum';
 import { Client } from 'src/app/core/models/client';
@@ -24,7 +25,8 @@ export class PageListClientsComponent implements OnInit {
   private sub: Subscription;
 
   constructor(private cs: ClientsService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private router: Router) {
     // Appel http effectué à ce moment là (au moment du subscribe)
     /*this.sub = this.cs.collection.subscribe((data) => {
       this.collection = data;
@@ -85,6 +87,10 @@ export class PageListClientsComponent implements OnInit {
         this.collection$.next(datas);
       });
     });
+  }
+
+  public goToEdit(item: Client): void {
+    this.router.navigate(['clients', 'edit', item.id]);
   }
 
 }

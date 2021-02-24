@@ -105,12 +105,12 @@
       "comment": "QSDQsd"
     },
     {
-      "state": "ACTIVE",
+      "state": "INACTIVE",
       "tva": 20,
       "id": 5,
-      "name": "dqsdQSDqsdQSDqds",
+      "name": "Test",
       "totalCaHt": 0,
-      "comment": null
+      "comment": "test comment"
     }
   ]
 }

@@ -18,7 +18,7 @@ export class FormClientComponent implements OnInit {
   init!: Client;
 
   @Output()
-  clicked: EventEmitter<Client> = new EventEmitter<Client>();
+  submited: EventEmitter<Client> = new EventEmitter<Client>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -40,7 +40,7 @@ export class FormClientComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.clicked.emit(this.form.value);
+    this.submited.emit(this.form.value);
   }
 
 }

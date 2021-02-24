@@ -1,1 +1,4 @@
-<p>page-edit-client works!</p>
+<app-template-container>
+  <h1 class="title">Edit client</h1>
+  <app-form-client class="contents" *ngIf="item$ | async as item" [init]="item" (submited)="edit($event)"></app-form-client>
+</app-template-container>
