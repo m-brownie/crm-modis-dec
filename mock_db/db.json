@@ -1,10 +1,20 @@
 {
+  "users": [
+    {
+      "email": "admin@domain.com",
+      "password": "azerty"
+    },
+    {
+      "email": "user@domain.com",
+      "password": "qwerty"
+    }
+  ],
   "orders": [
     {
       "tjmHt": 1100,
       "nbJours": 10,
       "tva": 20,
-      "state": "CANCELED",
+      "state": "CONFIRMED",
       "typePresta": "formation",
       "client": "Atos",
       "comment": "Merci Atos",

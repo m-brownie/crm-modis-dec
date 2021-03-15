@@ -5,15 +5,15 @@
     <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" class="alert alert-danger">Champ invalide</div>
   </div>
   <div class="form-group">
-    <label for="name">Total CA HT</label>
+    <label for="totalCaHt">Total CA HT</label>
     <input formControlName="totalCaHt" type="text" class="form-control" id="totalCaHt">
   </div>
   <div class="form-group">
-    <label for="name">TVA</label>
+    <label for="tva">TVA</label>
     <input formControlName="tva" type="text" class="form-control" id="tva">
   </div>
   <div class="form-group">
-    <label for="name">State</label>
+    <label for="state">State</label>
     <select formControlName="state" type="text" class="form-control" id="state">
       <option *ngFor="let state of states" [value]="state">{{ state }}</option>
     </select>
