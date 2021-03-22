@@ -29,7 +29,7 @@ export class FormSignInComponent implements OnInit {
         '',
         Validators.required
       ]
-  });
+    });
   }
 
   public onSubmit(): void {

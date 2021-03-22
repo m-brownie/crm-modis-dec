@@ -10,7 +10,12 @@ import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [PageSignInComponent, PageSignUpComponent, FormSignInComponent, FormSignUpComponent],
+  declarations: [
+    PageSignInComponent,
+    PageSignUpComponent,
+    FormSignInComponent,
+    FormSignUpComponent
+  ],
   imports: [
     CommonModule,
     LoginRoutingModule,

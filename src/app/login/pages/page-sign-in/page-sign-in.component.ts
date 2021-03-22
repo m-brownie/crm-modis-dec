@@ -14,7 +14,7 @@ export class PageSignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public connect(item: User):void {
+  public connect(item: User): void {
     this.ls.signIn(item).subscribe((res) => {
       console.log(res);
     });
