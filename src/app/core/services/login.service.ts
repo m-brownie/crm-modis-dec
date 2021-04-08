@@ -21,8 +21,8 @@ export class LoginService {
   }
 
   // Se connecter
-  public signIn(item: User): Observable<User> {
-    return this.http.get<User>(`${this.urlApi}/users/${item.email}`);
+  public signIn(item: User): Observable<User[]> {
+    return this.http.get<User[]>(`${this.urlApi}/users?email=${item.email}`);
   }
 
   public mustMatch(controlName: string, matchingControlName: string) {

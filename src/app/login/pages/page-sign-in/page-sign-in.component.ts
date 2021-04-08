@@ -16,7 +16,11 @@ export class PageSignInComponent implements OnInit {
 
   public connect(item: User): void {
     this.ls.signIn(item).subscribe((res) => {
-      console.log(res);
+
+      // Pas cool mais l'API renvoie systématiquement un tableau
+      // On assume que le mail est unique
+      const user = res[0];
+      console.log("User : " + user.id, user.email, user.password, user.confirmPassword);
     });
   }
 
