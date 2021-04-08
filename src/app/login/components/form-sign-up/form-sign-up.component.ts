@@ -20,26 +20,25 @@ export class FormSignUpComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.form = this.fb.group(
-      {
-        email: [
-          '',
-          [
-            Validators.required,
-            Validators.email
-          ]
-        ],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(10)
-          ]
-        ],
-        confirmPassword: [
-          '',
-          Validators.required
+    this.form = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email
         ]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5)
+        ]
+      ],
+      confirmPassword: [
+        '',
+        Validators.required
+      ]
       },
       {
         validator: this.ls.mustMatch("password", "confirmPassword")

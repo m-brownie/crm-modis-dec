@@ -1,12 +1,22 @@
 {
   "users": [
     {
+      "id": 1,
       "email": "admin@domain.com",
-      "password": "azerty"
+      "password": "azerty",
+      "confirmPassword": "azerty"
     },
     {
+      "id": 2,
       "email": "user@domain.com",
-      "password": "qwerty"
+      "password": "qwerty",
+      "confirmPassword": "qwerty"
+    },
+    {
+      "email": "test@test.com",
+      "password": "azerty",
+      "confirmPassword": "azerty",
+      "id": 3
     }
   ],
   "orders": [

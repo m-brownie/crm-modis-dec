@@ -15,8 +15,9 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   // Enregistrer un compte
-  public signUp() {
-
+  public signUp(item: User): Observable<User> {
+    console.log(item.id);
+    return this.http.post<User>(`${this.urlApi}/users`, item);
   }
 
   // Se connecter
