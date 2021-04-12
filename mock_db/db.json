@@ -17,6 +17,12 @@
       "password": "azerty",
       "confirmPassword": "azerty",
       "id": 3
+    },
+    {
+      "email": "az@test.com",
+      "password": "azerty",
+      "confirmPassword": "azerty",
+      "id": 4
     }
   ],
   "orders": [

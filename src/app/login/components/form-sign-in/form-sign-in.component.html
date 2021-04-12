@@ -12,6 +12,8 @@
       <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">Champ invalide</div>
     </div>
     <button [disabled]="form.invalid" type="submit" class="btn-login">Se connecter</button>
+
+    <p>Pas de compte ? <a routerLink="/signup">S'inscrire</a></p>
   </div>
 </form>
 

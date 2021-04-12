@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 
@@ -11,6 +12,8 @@ import { User } from '../models/user';
 export class LoginService {
 
   private urlApi = environment.urlApi;
+
+  private userByEmail!: Observable<User[]>;
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +26,10 @@ export class LoginService {
   // Se connecter
   public signIn(item: User): Observable<User[]> {
     return this.http.get<User[]>(`${this.urlApi}/users?email=${item.email}`);
+  }
+
+  public getUserByEmail(email: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.urlApi}/users?email=${email}`);
   }
 
   public mustMatch(controlName: string, matchingControlName: string) {

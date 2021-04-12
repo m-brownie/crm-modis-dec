@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user';
 import { LoginService } from 'src/app/core/services/login.service';
 
@@ -9,7 +10,8 @@ import { LoginService } from 'src/app/core/services/login.service';
 })
 export class PageSignInComponent implements OnInit {
 
-  constructor(private ls: LoginService) { }
+  constructor(private ls: LoginService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,7 @@ export class PageSignInComponent implements OnInit {
       // On assume que le mail est unique
       const user = res[0];
       console.log("User : " + user.id, user.email, user.password, user.confirmPassword);
+      this.router.navigate(['orders'])
     });
   }
 
