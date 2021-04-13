@@ -35,8 +35,10 @@ export class LoginService {
     //  comparer item.password avec user_trouvé.password
     //  SI identique
     //    mettre le user (ou que son mail ?) dans localStorage
+    //    le retouner ?
     //  SINON
     //    erreur (créer un système de gestion d'erreur ?)
+    //    retourner qq chose ?
 
     return this.http.get<User[]>(`${this.urlApi}/users?email=${item.email}`);
   }
