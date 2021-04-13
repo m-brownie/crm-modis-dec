@@ -25,6 +25,19 @@ export class LoginService {
 
   // Se connecter
   public signIn(item: User): Observable<User[]> {
+
+    // TODO
+    // Utiliser les RxJs opertors ? (pipe, map, switchMap ?)
+
+    // TODO
+    // GET l'utilisateur par son adresse mail : getUserByEmail(item.email)
+    // SI une valeur est trouvée
+    //  comparer item.password avec user_trouvé.password
+    //  SI identique
+    //    mettre le user (ou que son mail ?) dans localStorage
+    //  SINON
+    //    erreur (créer un système de gestion d'erreur ?)
+
     return this.http.get<User[]>(`${this.urlApi}/users?email=${item.email}`);
   }
 
