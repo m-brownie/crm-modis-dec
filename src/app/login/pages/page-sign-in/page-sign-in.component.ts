@@ -11,19 +11,21 @@ import { LoginService } from 'src/app/core/services/login.service';
 export class PageSignInComponent implements OnInit {
 
   constructor(private ls: LoginService,
-              private router: Router) { }
+              private router: Router) {
+
+    if(this.ls.userValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
   }
 
   public connect(item: User): void {
-    this.ls.signIn(item).subscribe((res) => {
 
-      // Pas cool mais l'API renvoie systématiquement un tableau
-      // On assume que le mail est unique
-      const user = res[0];
-      console.log("User connecté : " + user.id, user.email, user.password, user.confirmPassword);
-      this.router.navigate(['orders'])
+    this.ls.login(item).subscribe((res) => {
+      // On redirige vers la page Home
+      this.router.navigate(['/'])
     });
   }
 

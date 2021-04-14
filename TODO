@@ -1,0 +1,2 @@
+- Créer un module Home
+- En faire la page d'accueil grâce au routing app-routing avec Auth guard
