@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -13,9 +14,8 @@ export class LoginService {
 
   private urlApi = environment.urlApi;
 
-  private userByEmail!: Observable<User[]>;
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   // Enregistrer un compte
   public signUp(item: User): Observable<User> {
@@ -26,23 +26,30 @@ export class LoginService {
   // Se connecter
   public signIn(item: User): Observable<User[]> {
 
-    // TODO
-    // Utiliser les RxJs opertors ? (pipe, map, switchMap ?)
+    const res = this.getUserByEmail(item.email);
 
-    // TODO
-    // GET l'utilisateur par son adresse mail : getUserByEmail(item.email)
-    // SI une valeur est trouvée
-    //  comparer item.password avec user_trouvé.password
-    //  SI identique
-    //    mettre le user (ou que son mail ?) dans localStorage
-    //  SINON
-    //    erreur (créer un système de gestion d'erreur ?)
+    res.subscribe((res) => {
 
-    return this.http.get<User[]>(`${this.urlApi}/users?email=${item.email}`);
+      const user = res[0];
+
+      // Pseudo vérification de sécurité des infos de connexion
+      if (user.password === item.password) {
+        localStorage.setItem("user", user.email);
+      }
+    });
+
+    // Juste pour les besoins de logs dans page-sign-in.components.ts
+    return res;
   }
 
-  public getUserByEmail(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.urlApi}/users?email=${email}`);
+  // Se déconnecter
+  public logout() {
+
+    if (localStorage.getItem("user")) {
+      localStorage.removeItem("user");
+    }
+
+    this.router.navigate(['login']);
   }
 
   public mustMatch(controlName: string, matchingControlName: string) {
@@ -64,6 +71,10 @@ export class LoginService {
         matchingControl.setErrors(null);
       }
     };
+  }
+
+  private getUserByEmail(email: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.urlApi}/users?email=${email}`);
   }
 
 }

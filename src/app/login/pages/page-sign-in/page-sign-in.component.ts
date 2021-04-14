@@ -22,7 +22,7 @@ export class PageSignInComponent implements OnInit {
       // Pas cool mais l'API renvoie systématiquement un tableau
       // On assume que le mail est unique
       const user = res[0];
-      console.log("User : " + user.id, user.email, user.password, user.confirmPassword);
+      console.log("User connecté : " + user.id, user.email, user.password, user.confirmPassword);
       this.router.navigate(['orders'])
     });
   }
